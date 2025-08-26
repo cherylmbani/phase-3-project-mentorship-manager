@@ -30,3 +30,15 @@ class Venue(Base):
     capacity = Column(Integer)
     participants = relationship("Participant", back_populates="venue")
     sessions = relationship("Session", back_populates="venue")
+
+
+class Participant(Base):
+    __tablename__ = "participants"
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String(40), nullable=False)
+    last_name = Column(String(40), nullable=False)
+    email_address = Column(String)
+    phone_number = Column(Integer, nullable= False)
+    venue_id = Column(Integer, ForeignKey("venues.id"))
+    sessions = relationship("Session", secondary= session_participant, back_populates="participants")
+    venue = relationship("Venue", back_populates="participants")
