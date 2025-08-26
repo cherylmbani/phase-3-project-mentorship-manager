@@ -56,7 +56,7 @@ class Session(Base):
     participants = relationship("Participant", secondary= session_participant, back_populates="sessions")
 
 #Now connect the codes to the database
-engine = create_engine("sqlite:///mentorship.db")
+engine = create_engine("sqlite:///lib/db/mentorship.db")
 #Now lets create the tables in the database
 Base.metadata.create_all(bind=engine)
 #Communicate with the database
@@ -68,3 +68,7 @@ organizer1 = Organizer(first_name="Cheryl", last_name="Mbani",
 
 session.add(organizer1)
 session.commit()
+
+organizers = session.query(Organizer).all()
+for org in organizers:
+    print(org.id, org.first_name, org.last_name, org.email_address, org.phone_number)
