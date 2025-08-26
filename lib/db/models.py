@@ -20,3 +20,13 @@ class Organizer(Base):
     email_address = Column(String)
     phone_number = Column(Integer, nullable = False)
     sessions = relationship("Session", back_populates="organizer")
+
+
+class Venue(Base):
+    __tablename__ = "venues"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    location = Column(String, nullable=False)
+    capacity = Column(Integer)
+    participants = relationship("Participant", back_populates="venue")
+    sessions = relationship("Session", back_populates="venue")
