@@ -29,14 +29,8 @@ def add_venue(name, location, capacity):
     new_venue = Venue(name = name, location = location, capacity = capacity)
     session.add(new_venue)
     session.commit()
-add_venue(name="The Twig", 
-          location="Waiyaki Way, Nairobi",
-          capacity=450"
-)
-venues = session.query(Venue).all()
-for venue in venues:
-    print(f"{venue.name}, {venue.location}, venue.capacity")
 
+#adding mentorship sessions
 def add_mentorship_session(title, description, organizer_id, venue_id):
     new_mentorship_session = MentorshipSession(title = title, description = description, organizer_id = organizer_id, venue_id = venue_id)
     session.add(new_mentorship_session)
@@ -47,34 +41,56 @@ def add_mentorship_session(title, description, organizer_id, venue_id):
 def get_organizers():
     organizers = session.query(Organizer).all()
     return organizers
-organizers = get_organizers()
+#These commented lines were for testing
+"""organizers = get_organizers()
 for organizer in organizers:
     print(f"ID: {organizer.id}, First name: {organizer.first_name}, Last name: {organizer.last_name}")
-
+"""
 
 #retrieve all participants
 def get_participants():
     participants = session.query(Participant).all()
     return participants
-participants = get_participants()
+"""participants = get_participants()
 for participant in participants:
     print(f"ID: {participant.id}, First name: {participant.first_name}, Last name: {participant.last_name}")
-
+"""
 
 #retriebe all venues
 def get_venues():
     venues = session.query(Venue).all()
     return venues
-venues = get_venues()
+"""venues = get_venues()
 for venue in venues:
     print(f"ID: {venue.id}, Name: {venue.name}, Location: {venue.location}, Capacity: {venue.capacity}")
+"""
 
-
-#retruieve organizers
+#retrieve mentorship sessions
 def get_mentorship_sessions():
     mentorship_sessions = session.query(MentorshipSession).all()
     return mentorship_sessions
 
-mentorship_sessions = get_mentorship_sessions()
+"""mentorship_sessions = get_mentorship_sessions()
 for mentorship_session in mentorship_sessions:
     print(f"ID: {mentorship_session.id}, title: {mentorship_session.title}")
+"""
+
+
+#Updating functions
+def update_organizer_email(organizer_id, first_name = None, last_name = None, email_address = None, phone_number = None)
+    #find the organizer by id
+    organizer = session.query(Organizer).filter_by(id=organizer_id)
+    if organizer: #if found
+        if first_name is not None:
+            organizer.first_name = first_name
+        if last_name is not None:
+            organizer.last_name = last_name
+        if email_address is not None:
+            organizer.email_address = email_address
+        if phone_number is not None:
+            organizer.phone_number = phone_number
+        session.commit()
+        print(f"Organizer ID {organizer_id} is updated successfully")
+    else:
+        print(f"There is no organizer with ID:{organizer.id}")
+
