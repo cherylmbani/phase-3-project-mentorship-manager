@@ -48,6 +48,7 @@ class MentorshipSession(Base):
     __tablename__= "mentorship_sessions"
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
+    date = Column(String)
     description = Column(Text)
     organizer_id = Column(Integer, ForeignKey("organizers.id"), nullable=False)
     venue_id = Column(Integer, ForeignKey("venues.id"), nullable=False)
