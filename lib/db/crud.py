@@ -130,7 +130,7 @@ def update_venue(venue_id, name = None, location = None, capacity=None):
         print(f"There is no venue with ID:{venue_id}")
 
 #updating mentorship sessions
-def update_mentprship_session(mentorship_session_id, title, date, description):
+def update_mentorship_session(mentorship_session_id, title, date, description):
     mentorship_session = session.query(MentorshipSession).filter_by(id=mentorship_session.id)
     if mentorship_session:
         if title is not None:
@@ -144,3 +144,11 @@ def update_mentprship_session(mentorship_session_id, title, date, description):
         print("Mentorship session  ID {mentorship_session_id} is updated successfully")
     else:
         print(f"There is no mentorship session with ID:{mentorship_session_id}")
+
+update_organizer(1, first_name="Cheryl", email_address="newmail@example.com")
+update_mentorship_session(2, title="Leadership & Growth", venue="Nairobi Hub")
+update_participant(3, first_name="John", last_name="Doe")
+update_venue(3, name="Nairobi Hub", location="Westlands")
+
+
+#DELETE
