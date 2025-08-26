@@ -12,7 +12,7 @@ add_organizer(first_name="Ianni",
               email_address="iannibona@gmail.com", 
               phone_number=5689012
 )
-organizers = session.query(Organizer).all
+organizers = session.query(Organizer).all()
 for organizer in organizers:
     print(f"{organizer.first_name} {organizer.last_name}")
 
@@ -80,7 +80,7 @@ for mentorship_session in mentorship_sessions:
 #updating organizers
 def update_organizer(organizer_id, first_name = None, last_name = None, email_address = None, phone_number = None):
     #find the organizer by id
-    organizer = session.query(Organizer).filter_by(id=organizer_id)
+    organizer = session.query(Organizer).filter_by(id=organizer_id).first()
     if organizer: #if found
         if first_name is not None:
             organizer.first_name = first_name
@@ -98,7 +98,8 @@ def update_organizer(organizer_id, first_name = None, last_name = None, email_ad
 
 #updating participants
 def update_participant(participant_id, first_name, last_name, email_address, phone_number):
-    participant = session.query(Participant).filter_by(id=participant.id)
+    participant = session.query(Participant).filter_by(id=participant_id).first()
+    #DONT FORGET .first() to return the first result. YOU KEEP FORGETING
     if participant:
         if first_name is not None:
             participant.first_name = first_name
@@ -109,13 +110,13 @@ def update_participant(participant_id, first_name, last_name, email_address, pho
         if phone_number is not None:
             participant.phone_number = phone_number
         session.commit()
-        print("Participant ID {participant_id} is updated successfully")
+        print(f"Participant ID {participant_id} is updated successfully")
     else:
         print(f"There is no participant with ID:{participant_id}")
 
 #updating venues
 def update_venue(venue_id, name = None, location = None, capacity=None):
-    venue = session.query(Venue).filter_by(id=venue.id)
+    venue = session.query(Venue).filter_by(id=venue_id).first()
     if venue:
         if name is not None:
             venue.name = name
@@ -125,13 +126,13 @@ def update_venue(venue_id, name = None, location = None, capacity=None):
             venue.capacity = capacity
 
         session.commit()
-        print("Venue  ID {venue_id} is updated successfully")
+        print(f"Venue  ID {venue_id} is updated successfully")
     else:
         print(f"There is no venue with ID:{venue_id}")
 
 #updating mentorship sessions
-def update_mentorship_session(mentorship_session_id, title, date, description):
-    mentorship_session = session.query(MentorshipSession).filter_by(id=mentorship_session.id)
+def update_mentorship_session(mentorship_session_id, title, date=None, description=None):
+    mentorship_session = session.query(MentorshipSession).filter_by(id=mentorship_session_id).first()
     if mentorship_session:
         if title is not None:
             mentorship_session.title = title
@@ -141,13 +142,13 @@ def update_mentorship_session(mentorship_session_id, title, date, description):
             mentorship_session.desciption = description
         
         session.commit()
-        print("Mentorship session  ID {mentorship_session_id} is updated successfully")
+        print(f"Mentorship session  ID {mentorship_session_id} is updated successfully")
     else:
         print(f"There is no mentorship session with ID:{mentorship_session_id}")
 
 update_organizer(1, first_name="Cheryl", email_address="newmail@example.com")
-update_mentorship_session(2, title="Leadership & Growth", venue="Nairobi Hub")
-update_participant(3, first_name="John", last_name="Doe")
+update_mentorship_session(2, title="Leadership & Growth", date = "2025-09-25", description="Session on Leadership and Growth")
+update_participant(3, first_name="John", last_name="Doe", email_address="johndoe@gmail.com", phone_number=8899776655)
 update_venue(3, name="Nairobi Hub", location="Westlands")
 
 
