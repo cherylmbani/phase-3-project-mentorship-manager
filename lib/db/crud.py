@@ -77,6 +77,10 @@ for mentorship_session in mentorship_sessions:
 
 
 #Updating functions
+#First get the specific instance to update using its Id by using filter_by
+#if an instance with the matching Id is found, check if its attributes are none
+#if attributes are not None, then update the attributes with the new attributes
+#Remember to save changes
 #updating organizers
 def update_organizer(organizer_id, first_name = None, last_name = None, email_address = None, phone_number = None):
     #find the organizer by id
@@ -99,7 +103,7 @@ def update_organizer(organizer_id, first_name = None, last_name = None, email_ad
 #updating participants
 def update_participant(participant_id, first_name, last_name, email_address, phone_number):
     participant = session.query(Participant).filter_by(id=participant_id).first()
-    #DONT FORGET .first() to return the first result. YOU KEEP FORGETING
+    
     if participant:
         if first_name is not None:
             participant.first_name = first_name
@@ -145,7 +149,7 @@ def update_mentorship_session(mentorship_session_id, title, date=None, descripti
         print(f"Mentorship session  ID {mentorship_session_id} is updated successfully")
     else:
         print(f"There is no mentorship session with ID:{mentorship_session_id}")
-
+#To test if the functions are updating the instances
 update_organizer(1, first_name="Cheryl", email_address="newmail@example.com")
 update_mentorship_session(2, title="Leadership & Growth", date = "2025-09-25", description="Session on Leadership and Growth")
 update_participant(3, first_name="John", last_name="Doe", email_address="johndoe@gmail.com", phone_number=8899776655)
@@ -153,3 +157,60 @@ update_venue(3, name="Nairobi Hub", location="Westlands")
 
 
 #DELETE
+#It is very important to first get the instance to update by its Id
+#if found, then sqlalchemy tell the database to delete the instance with the Id, using session.delete()
+#Remember to save the changes using session.commit()
+
+
+#Delete organizer
+def delete_organizer(organizer_id):
+    organizer = session.query(Organizer).filter_by(id=organizer_id).first()
+    if organizer:
+        session.delete(organizer)
+        session.commit()
+        print(f"Organizer with ID {organizer_id} is deleted successfully")
+    else:
+        print(f"No organizer with ID {organizer_id} was found")
+
+#delete participant
+def delete_participant(participant_id):
+    participant = session.query(Participant).filter_by(id=participant_id).first()
+    if participant:
+        session.delete(participant)
+        session.commit()
+        print(f"Participant with ID {participant_id} is deleted successfully")
+    else:
+        print(f"No participant with ID {participant_id} was found")
+
+#delete venue
+def delete_venu(venue_id):
+    venue = session.query(Venue).filter_by(id=venue_id).first()
+    if venue:
+        session.delete(venue)
+        session.commit()
+        print(f"Venue with ID {venue_id} is deleted successfully")
+    else:
+        print(f"No venue with ID {venue_id} was found")
+
+#delete mentorship_session
+def delete_mentorship_session(mentorship_session_id):
+    mentorship_session = session.query(MentorshipSession).filter_by(id=mentorship_session_id).first()
+    if mentorship_session:
+        session.delete(mentorship_session)
+        session.commit()
+        print(f"Mentorship session with ID {mentorship_session_id} is deleted successfully")
+    else:
+        print(f"No mentorship session with ID {mentorship_session_id} was found")
+
+#Testing 
+#Now the problem is the relationship when it comes to deleting. 
+#An organizer cannot be deleted just like that because some mentorship sessoions reference it
+#So the mentorship sessions have to be removed first before deleting the organizer
+#In short, delete the instance holding the foreign keys first
+mentorship_sessions = session.query(MentorshipSession).filter_by(organizer_id=1).all()
+for s in mentorship_sessions:
+    s.organizer_id = 2
+session.commit()
+
+delete_organizer(1)
+
