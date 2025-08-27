@@ -294,8 +294,7 @@ def main_menu():
             click.secho("Exiting... Goodbye!", fg="magenta")
             break
 
-if __name__=="__main__":
-    main_menu()
+
 
 
 

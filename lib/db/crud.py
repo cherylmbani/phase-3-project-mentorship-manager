@@ -7,7 +7,7 @@ def add_organizer(first_name, last_name, email_address, phone_number):
     session.add(new_organizer) #updates the changes in the database
     session.commit() #saves the changes permanently in the database
 
-add_organizer(first_name="Ianni", 
+'''add_organizer(first_name="Ianni", 
               last_name="Bona", 
               email_address="iannibona@gmail.com", 
               phone_number=5689012
@@ -15,7 +15,7 @@ add_organizer(first_name="Ianni",
 organizers = session.query(Organizer).all()
 for organizer in organizers:
     print(f"{organizer.first_name} {organizer.last_name}")
-
+'''
 
 
 #Adding participant
@@ -150,11 +150,11 @@ def update_mentorship_session(mentorship_session_id, title, date=None, descripti
     else:
         print(f"There is no mentorship session with ID:{mentorship_session_id}")
 #To test if the functions are updating the instances
-update_organizer(1, first_name="Cheryl", email_address="newmail@example.com")
+'''update_organizer(1, first_name="Cheryl", email_address="newmail@example.com")
 update_mentorship_session(2, title="Leadership & Growth", date = "2025-09-25", description="Session on Leadership and Growth")
 update_participant(3, first_name="John", last_name="Doe", email_address="johndoe@gmail.com", phone_number=8899776655)
 update_venue(3, name="Nairobi Hub", location="Westlands")
-
+'''
 
 #DELETE
 #It is very important to first get the instance to update by its Id
@@ -212,5 +212,5 @@ for s in mentorship_sessions:
     s.organizer_id = 2
 session.commit()
 
-delete_organizer(1)
+
 
