@@ -1,3 +1,5 @@
+
+
 from lib.db.crud import add_mentorship_session, add_organizer, add_participant, add_venue
 
 # we want to populate our database with initial data
@@ -18,12 +20,12 @@ add_mentorship_session(
 )
 
 #Seed organizers
-add_organizer(first_name="Cheryl", last_name="Mbani",email_address="cheryl@gmail.com", phone_number=123456789)
-add_organizer(first_name="Gianna", last_name="Rashid", email_address="gianna@gmail.com", phone_number=256789043)
+add_organizer(first_name="Cheryl", last_name="Mbani",email_address="cheryl@gmail.com", phone_number=123456789101)
+add_organizer(first_name="Gianna", last_name="Rashid", email_address="gianna@gmail.com", phone_number=2567890432)
 
 #Seed participants
-add_participant(first_name = "Loren", last_name = "Spears", email_address = "lorenspears@gmail.com", phone_number = 145800081, venue_id=1)
-add_participant(first_name = "Jamal", last_name = "Oesteen", email_address = "jamaloesteen@gmail.com", phone_number = 986754734, venue_id=2)
+add_participant(first_name = "Loren", last_name = "Spears", email_address = "lorenspears@gmail.com", phone_number = 1458000819, venue_id=1)
+add_participant(first_name = "Jamal", last_name = "Oesteen", email_address = "jamaloesteen@gmail.com", phone_number = 98675473498, venue_id=2)
 
 
 #Seed venues

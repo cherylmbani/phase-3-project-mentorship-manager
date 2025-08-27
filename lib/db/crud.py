@@ -1,4 +1,4 @@
-from .models import Organizer, Venue, Participant, MentorshipSession, session
+from lib.db.models import Organizer, Venue, Participant, MentorshipSession, session
 #CRUD OPERATIONS on Organizer
 #CREATE
 #Adding organizers
