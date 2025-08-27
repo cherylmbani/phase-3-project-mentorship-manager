@@ -183,7 +183,7 @@ def delete_participant(participant_id):
         print(f"No participant with ID {participant_id} was found")
 
 #delete venue
-def delete_venu(venue_id):
+def delete_venue(venue_id):
     venue = session.query(Venue).filter_by(id=venue_id).first()
     if venue:
         session.delete(venue)
