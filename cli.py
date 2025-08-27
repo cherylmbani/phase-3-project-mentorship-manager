@@ -35,7 +35,6 @@ def main_menu():
             
             if mentorship_choice==1:
                 click.secho("fill in the following fields of mentorship session to add", fg="red")
-                mentorship_session_id = click.prompt("Please enter the Id of the session to Update")
                 title=click.prompt("Session title")
                 date=click.prompt("Session date(YYYY-MM-DD)")
                 description=click.prompt("Session description")
@@ -104,7 +103,6 @@ def main_menu():
             
             if organizer_choice==1:
                 click.secho("fill in the following organizer details", fg="red")
-                organizer_id = click.prompt("Please enter the Id of the organizer to add")
                 first_name=click.prompt("First name")
                 last_name=click.prompt("Last name")
                 email_address=click.prompt("Email address")
@@ -168,7 +166,6 @@ def main_menu():
             
             if participant_choice==1:
                 click.secho("fill in the following participant details", fg="green")
-                participant_id = click.prompt("Please enter the Id of the participant to add")
                 first_name=click.prompt("First Name")
                 last_name=click.prompt("Last name")
                 email_address=click.prompt("Email address")
@@ -239,7 +236,6 @@ def main_menu():
             
             if venue_choice==1:
                 click.secho("fill in the following venue details", fg="green")
-                venue_id = click.prompt("Please enter the Id of the venue to add")
                 name=click.prompt("Name")
                 location=click.prompt("Location")
                 capacity=click.prompt("Capacity")
