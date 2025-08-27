@@ -32,6 +32,14 @@ def confirm_action(message="Are you sure? (y/n): "):
     choice = input(message).strip().lower()
     return choice == "y"
 
+def print_success(message):
+    """Prints a success message in green."""
+    print(f"\033[92m{message}\033[0m")
 
+def print_info(message):
+    """Prints an info message in blue."""
+    print(f"\033[94m{message}\033[0m")
 
-
+def print_error(message):
+    """Prints an error message in red."""
+    print(f"\033[91m{message}\033[0m")

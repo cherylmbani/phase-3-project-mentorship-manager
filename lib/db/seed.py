@@ -1,9 +1,15 @@
 
 
 from lib.db.crud import add_mentorship_session, add_organizer, add_participant, add_venue
-
+from helpers import validate_email, print_success
 # we want to populate our database with initial data
 #seed mentorship sessions
+
+if validate_email("mentor@gmail.com"):
+    print_success("Email is valid, seeding data...")
+else:
+    raise ValueError("Invalid email. Seeding aborted")
+
 add_mentorship_session(
     title = "Emotional Intelligence",
     date="2026-01-14",
@@ -34,3 +40,4 @@ add_participant(first_name = "Jamal", last_name = "Oesteen", email_address = "ja
 
 add_venue (name="Nairobi Cinema", location = "Nairobi", capacity = 500)
 add_venue(name="Nairobi Hub", location="Westlands, Nairobi", capacity=90)
+

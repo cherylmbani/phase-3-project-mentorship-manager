@@ -1,6 +1,7 @@
 #import click, the library for creating CLI applications
 #Then import the crud functions to interact with
 import click 
+from helpers import confirm_action, print_info
 from lib.db.crud import(
     add_organizer,get_organizers, update_organizer, delete_organizer,
     add_participant, get_participants, update_participant, delete_participant,
@@ -86,9 +87,9 @@ def main_menu():
                 click.secho("Deleting a session", fg="red")
                 session_id = click.prompt("Please enter the Id of the session to delete")
                 confirm = click.prompt("Are you sure you want to delete this session(y/n)?", default=False)
-                if confirm:
+                if confirm_action("Are you sure you want to delete this session?"):
                     delete_mentorship_session(session_id)
-                    click.secho(f"Session {session_id} deleted successfully", fg="blue")
+                    print_info(f"Session {session_id} deleted successfully", fg="blue")
                 else:
                     click.secho("Deletion is cancelled", fg="purple")
         
@@ -293,8 +294,4 @@ def main_menu():
         if choice ==5:
             click.secho("Exiting... Goodbye!", fg="magenta")
             break
-
-
-
-
 

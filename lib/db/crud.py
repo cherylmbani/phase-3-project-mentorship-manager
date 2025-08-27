@@ -1,8 +1,11 @@
 from lib.db.models import Organizer, Venue, Participant, MentorshipSession, session
+from helpers import validate_phone_number
 #CRUD OPERATIONS on Organizer
 #CREATE
 #Adding organizers
 def add_organizer(first_name, last_name, email_address, phone_number):
+    if not validate_phone_number(phone_number):
+        raise ValueError("Invalid phone number")
     new_organizer = Organizer(first_name = first_name, last_name = last_name, email_address = email_address, phone_number = phone_number)
     session.add(new_organizer) #updates the changes in the database
     session.commit() #saves the changes permanently in the database
@@ -20,6 +23,8 @@ for organizer in organizers:
 
 #Adding participant
 def add_participant(first_name, last_name, email_address, phone_number, venue_id):
+    if not validate_phone_number(phone_number):
+        raise ValueError("Invalid phone number")
     new_participant = Participant(first_name = first_name, last_name = last_name, email_address = email_address, phone_number = phone_number, venue_id = venue_id)
     session.add(new_participant)
     session.commit()
@@ -211,6 +216,8 @@ mentorship_sessions = session.query(MentorshipSession).filter_by(organizer_id=1)
 for s in mentorship_sessions:
     s.organizer_id = 2
 session.commit()
+
+
 
 
 
