@@ -140,6 +140,20 @@ View all participants
 Select "Participants" → "View Participants"
 The CLI will display a list of all participants with IDs and details
 
+## Running Modules vs Scripts
+
+Some project files are part of Python packages, which affects how they should be run:
+
+- **Running directly (not recommended for package modules):**
+```bash
+python lib/db/crud.py
+```
+-**Running as module(recommended):**
+```bash
+python -m lib.db.crud
+python -m lib.db.seed
+```
+
 ## Requirements
 
 Before running this project, ensure you have the following installed on your system:
