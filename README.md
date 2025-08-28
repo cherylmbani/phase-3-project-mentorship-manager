@@ -59,7 +59,7 @@ The application provides a user-friendly command-line interface (CLI) with clear
 phase-3-project-mentorship-manager/
 │
 ├── lib/
-│ ├── db/
+  │ ├── db/
 │ │ ├── crud.py # CRUD operations for all entities
 │ │ ├── models.py # Database models using SQLAlchemy
 │ │ ├── seed.py # Initial seed data for the database
@@ -85,25 +85,25 @@ gitgit clone <https://github.com/cherylmbani/phase-3-project-mentorship-manager>
 cd phase-3-project-mentorship-manager
 
 ### Install dependencies using Pipenv
-
+```bash
 pip install pipenv # Install Pipenv if you don't have it already
 pipenv install # Install project dependencies from Pipfile
-
+```
 ### Activate the virtual environment
-
+```bash
 pipenv shell
-
+```
 ### Set up the database
 
 Ensure mentorship.db exists in lib/db/
 If you need to seed the database with initial data, run:
-
+```bash
 python -m lib.db.seed
-
+```
 ### Run the application
-
+```bash
 python main.py
-
+```
 ## Usage
 
 Run the application:
@@ -200,6 +200,11 @@ You are free to use, copy, modify, merge, publish, distribute, sublicense, and/o
 For more details, see the [LICENSE](LICENSE) file in the repository.
 
 
+## Author
+
+**Cheryl Mbani**  
+GitHub: [https://github.com/cherylmbani](https://github.com/cherylmbani)  
+Email: mbanicheryl45@gmail.com
 
 
 
